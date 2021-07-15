@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { GlobalContext } from '../context/GlobalContext'
+import { Container, Typography } from '@material-ui/core'
 // bookmarked as Eaten Recipelist
 const EatenList = () => {
+
+  const { eatenList } = useContext(GlobalContext)
+  console.log('eatenList:', eatenList)
   return (
-    <div>
-      <h1>Eaten list</h1>
-    </div>
+    <Container>
+      <Typography variant="h4" component="h1">Eaten List</Typography>
+    </Container>
   )
 }
 

@@ -28,7 +28,7 @@ const Layout = ({ children }) => {
           <Container>
             <Grid container>
               <Grid item xs={4}>
-                <Button className={ classes.appBarButton  }color="inherit" aria-label="menu" onClick={ () => history.push("/")}>
+                <Button className={ classes.appBarButton }color="inherit" aria-label="menu" onClick={ () => history.push("/")}>
                   <FastfoodIcon />
                     <Typography variant="h6">MuiSpoon</Typography>
                 </Button>

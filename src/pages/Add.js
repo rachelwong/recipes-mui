@@ -1,7 +1,7 @@
-import React, { useState} from 'react'
+import React, { useState, useContext} from 'react'
 import { Typography, TextField, makeStyles, Container, Grid } from '@material-ui/core'
 import axios from 'axios'
-import RecipeCard from './RecipeCard'
+import RecipeCard from '../components/RecipeCard'
 import fakeData from '../data/db.json'
 
 // search for recipes to add to RecipeList page
@@ -29,9 +29,9 @@ const Add = () => {
     setQuery(e.target.value)
     setLoading(true)
     const fetchRecipes = async () => {
-      let { data } = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SPOON_API_KEY}&query=${query}`)
-      setRecipes(data.results)
-      // setRecipes(fakeData.results)
+      // let { data } = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SPOON_API_KEY}&query=${query}`)
+      // setRecipes(data.results)
+      setRecipes(fakeData.results)
     }
     fetchRecipes()
     setLoading(false)
@@ -42,7 +42,7 @@ const Add = () => {
     <Container className={ classes.root}>
       <Typography variant="h4">Add recipes to list</Typography>
       <div>
-            <TextField
+        <TextField
           id="filled-full-width"
           style={{ margin: 8 }}
           placeholder="Search Recipes"
