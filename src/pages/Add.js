@@ -40,7 +40,7 @@ const Add = () => {
 
   return (
     <Container className={ classes.root}>
-      <Typography variant="h4">Add Recipes</Typography>
+      <Typography variant="h4">Add recipes to list</Typography>
       <div>
             <TextField
           id="filled-full-width"
