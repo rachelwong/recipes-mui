@@ -1,6 +1,6 @@
-import React, { useState, useContext} from 'react'
+import React, { useState} from 'react'
 import { Typography, TextField, makeStyles, Container, Grid } from '@material-ui/core'
-import axios from 'axios'
+// import axios from 'axios'
 import RecipeCard from '../components/RecipeCard'
 import fakeData from '../data/db.json'
 

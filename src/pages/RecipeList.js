@@ -4,8 +4,10 @@ import { Container, Typography, Grid, makeStyles } from '@material-ui/core'
 import RecipeCard from '../components/RecipeCard'
 
 const useStyles = makeStyles((theme) => {
-  gridRoot: {
-    margin: theme.spacing(1)
+  return {
+    gridRoot: {
+      margin: theme.spacing(1)
+    }
   }
 })
 

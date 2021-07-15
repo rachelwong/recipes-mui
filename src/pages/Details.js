@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
+// import { useHistory, useParams } from 'react-router-dom'
 import { Grid, Chip, Button, Container, Typography, Paper, makeStyles } from '@material-ui/core'
-import axios from 'axios'
+// import axios from 'axios'
 import fakeData from '../data/recipe.json'
 import LinkIcon from '@material-ui/icons/Link';
 import EcoIcon from '@material-ui/icons/Eco';
@@ -34,15 +34,17 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-end',
     alignItems: 'center',
     marginTop: theme.spacing(1)
+  },
+  wine: {
+    marginTop: theme.spacing(2)
   }
 }))
 
 
 const Details = () => {
-  const { id } = useParams();
+  // const { id } = useParams();
   const [recipeDetails, setRecipeDetails] = useState({})
   const classes = useStyles()
-  const history = useHistory()
 
   useEffect(() => {
     const fetchRecipeData = async () => {
@@ -91,16 +93,27 @@ const Details = () => {
           </Grid>
         </Grid>
       </Paper>
-      {recipeDetails.analyzedInstructions?.steps?.length > 0 && recipeDetails?.analyzedInstructions?.steps?.map((item, idx) => (
-        <Paper className={classes.instruction}>
-          <Typography variant="h6">
-            Step {item.number}
-          </Typography>
-          <Typography variant="body2">
-            {item.step}
-          </Typography>
-        </Paper>
-      ))}
+      <Grid container classname={classes.wine} xs={ 6}>
+        <Typography variant="h5">Wine pairing</Typography>
+        <Typography variant="body2">{ recipeDetails?.winePairing?.pairingText}</Typography>
+        {/* {JSON.stringify(recipeDetails.analyzedInstructions[0].steps.length)} */}
+        {/* {recipeDetails?.analyzedInstructions[0]?.steps?.map((instruction, idx) => (
+          <>
+            <Typography variant="h6">Step {instruction.step}</Typography>
+            <Typography variant="body2">{instruction}</Typography>
+          </>
+        ))} */}
+        {/* {recipeDetails.analyzedInstructions.steps?.length > 0 && recipeDetails?.analyzedInstructions?.steps?.map((item, idx) => (
+          <Paper className={classes.instruction}>
+            <Typography variant="h6">
+              Step {item.number}
+            </Typography>
+            <Typography variant="body2">
+              {item.step}
+            </Typography>
+          </Paper>
+        ))} */}
+      </Grid>
     </Container>
   )
 }
