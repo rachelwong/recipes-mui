@@ -1,12 +1,26 @@
 import React, { useContext }from 'react'
-import { Card, CardActionArea, CardMedia, CardContent, Typography, CardActions, Button } from '@material-ui/core'
+import { makeStyles, Card, CardActionArea, CardMedia, CardContent, Typography, CardActions, Button } from '@material-ui/core'
 import AlarmOnIcon from '@material-ui/icons/AlarmOn';
 import AlarmAddIcon from '@material-ui/icons/AlarmAdd';
 import { GlobalContext } from '../context/GlobalContext'
+import { Link } from 'react-router-dom'
+
+const useStyles = makeStyles((theme) => {
+  return {
+    cardLink: {
+      '& .MuiCardContent-root': {
+        color: 'black',
+        textDecoration: 'none'
+      }
+    }
+  }
+})
 
 const RecipeCard = ({ recipe }) => {
 
-  const { addToRecipeList, recipeList, eatenList } = useContext(GlobalContext)
+  const { addToRecipeList, addToEatenList, recipeList, eatenList } = useContext(GlobalContext)
+
+  const classes = useStyles()
 
   // Flags
   let listedRecipe = recipeList.find((item) => item.id === recipe.id)
@@ -18,18 +32,20 @@ const RecipeCard = ({ recipe }) => {
   return (
      <Card>
       <CardActionArea>
-        <CardMedia
-          component="img"
-          alt={title}
-          height="140"
-          image={image}
-          title={ title }
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            { title }
-          </Typography>
-        </CardContent>
+        <Link to={`/recipe/${id}`}>
+          <CardMedia
+            component="img"
+            alt={title}
+            height="140"
+            image={image}
+            title={ title }
+          />
+          <CardContent className={ classes.cardLink}>
+            <Typography gutterBottom variant="h5" component="h2">
+              { title }
+            </Typography>
+          </CardContent>
+        </Link>
       </CardActionArea>
       <CardActions>
         {recipeList.some(item => item === recipe.id) === false ? (
@@ -38,7 +54,7 @@ const RecipeCard = ({ recipe }) => {
             Bookmark
           </Button>
         ) : ("")}
-        <Button disabled={ eatenDisabled } size="small" color="primary">
+        <Button disabled={eatenDisabled} size="small" color="primary" onClick={ () => addToEatenList(recipe) }>
           <AlarmOnIcon />
           Eaten
         </Button>

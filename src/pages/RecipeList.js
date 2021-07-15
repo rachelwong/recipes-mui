@@ -13,12 +13,11 @@ const useStyles = makeStyles((theme) => {
 const RecipeList = () => {
   const { recipeList } = useContext(GlobalContext)
   const classes = useStyles()
-  console.log('recipeList:', recipeList)
 
   return (
     <Container>
       <Typography variant="h4" component="h1">Recipe List</Typography>
-      <Grid container>
+      <Grid container >
       {recipeList.length !== 0 && recipeList.map((recipe, idx) => (
         <Grid container item key={idx} direction="column" xs={3} className={ classes.gridRoot}>
           <RecipeCard recipe={recipe}/>

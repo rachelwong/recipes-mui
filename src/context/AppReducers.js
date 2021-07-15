@@ -8,7 +8,6 @@ export default (state, action) => {
     case "ADD_RECIPE_TO_EATEN_LIST":
       return {
         ...state,
-        recipeList: state.recipeList.filter(recipe => recipe.id !== action.payload.id),
         eatenList: [action.paylod, ...state.eatenList]
       }
     default:

@@ -26,7 +26,7 @@ export const GlobalProvider = ({ children }) => {
   }
 
   return (
-    <GlobalContext.Provider value={{recipeList: state.recipeList, eatenList: state.eatenList, addToRecipeList }}>
+    <GlobalContext.Provider value={{recipeList: state.recipeList, eatenList: state.eatenList, addToRecipeList, addToEatenList }}>
       { children }
     </GlobalContext.Provider>
   )

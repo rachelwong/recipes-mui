@@ -4,6 +4,7 @@ import Layout from './components/Layout'
 import RecipeList from './pages/RecipeList'
 import EatenList from './pages/EatenList'
 import Add from './pages/Add'
+import Details from './pages/Details'
 import { CssBaseline } from  '@material-ui/core'
 import { GlobalProvider } from './context/GlobalContext'
 
@@ -15,7 +16,8 @@ function App() {
           <Switch>
             <Route path="/" exact component={RecipeList} />
             <Route path="/eaten" component={EatenList} />
-            <Route path="/add" component={ Add } />
+            <Route path="/add" component={Add} />
+            <Route path="/recipe/:id" exact component={ Details } />
           </Switch>
         </Layout>
         <CssBaseline />
