@@ -1,6 +1,6 @@
 import React, { useState} from 'react'
 import { Typography, TextField, makeStyles, Container, Grid } from '@material-ui/core'
-// import axios from 'axios'
+import axios from 'axios'
 import RecipeCard from '../components/RecipeCard'
 import fakeData from '../data/db.json'
 
@@ -29,9 +29,9 @@ const Add = () => {
     setQuery(e.target.value)
     setLoading(true)
     const fetchRecipes = async () => {
-      // let { data } = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SPOON_API_KEY}&query=${query}`)
-      // setRecipes(data.results)
-      setRecipes(fakeData.results)
+      let { data } = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SPOON_API_KEY}&query=${query}`)
+      setRecipes(data.results)
+      // setRecipes(fakeData.results)
     }
     fetchRecipes()
     setLoading(false)

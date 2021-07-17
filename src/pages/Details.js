@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-// import { useHistory, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { Grid, Chip, Button, Container, Typography, Paper, makeStyles } from '@material-ui/core'
-// import axios from 'axios'
+import axios from 'axios'
 import fakeData from '../data/recipe.json'
 import LinkIcon from '@material-ui/icons/Link';
 import EcoIcon from '@material-ui/icons/Eco';
@@ -11,6 +11,7 @@ import EmojiNatureIcon from '@material-ui/icons/EmojiNature';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import LocalDrinkIcon from '@material-ui/icons/LocalDrink';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import BookmarksOutlinedIcon from '@material-ui/icons/BookmarksOutlined';
 
 const useStyles = makeStyles((theme) => ({
   pillWrap: {
@@ -42,15 +43,15 @@ const useStyles = makeStyles((theme) => ({
 
 
 const Details = () => {
-  // const { id } = useParams();
+  const { id } = useParams();
   const [recipeDetails, setRecipeDetails] = useState({})
   const classes = useStyles()
 
   useEffect(() => {
     const fetchRecipeData = async () => {
-      // let { data } = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${process.env.REACT_APP_SPOON_API_KEY}`)
-      // setRecipeDetails(data)
-      setRecipeDetails(fakeData)
+      let { data } = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${process.env.REACT_APP_SPOON_API_KEY}`)
+      setRecipeDetails(data)
+      // setRecipeDetails(fakeData)
     }
     fetchRecipeData()
   }, [])
@@ -83,9 +84,9 @@ const Details = () => {
               </Grid>
             </Grid>
             <Typography variant="body">
-              {recipeDetails.summary }
+              <div dangerouslySetInnerHTML={{__html: recipeDetails.summary }} />
             </Typography>
-            <div className={ classes.sourceBtn}>
+            <div className={classes.sourceBtn}>
               <Button variant="contained" color="secondary" startIcon={<LinkIcon />}>
                 <a href={recipeDetails.sourceUrl}>Go to Source</a>
               </Button>
@@ -96,23 +97,6 @@ const Details = () => {
       <Grid container classname={classes.wine} xs={ 6}>
         <Typography variant="h5">Wine pairing</Typography>
         <Typography variant="body2">{ recipeDetails?.winePairing?.pairingText}</Typography>
-        {/* {JSON.stringify(recipeDetails.analyzedInstructions[0].steps.length)} */}
-        {/* {recipeDetails?.analyzedInstructions[0]?.steps?.map((instruction, idx) => (
-          <>
-            <Typography variant="h6">Step {instruction.step}</Typography>
-            <Typography variant="body2">{instruction}</Typography>
-          </>
-        ))} */}
-        {/* {recipeDetails.analyzedInstructions.steps?.length > 0 && recipeDetails?.analyzedInstructions?.steps?.map((item, idx) => (
-          <Paper className={classes.instruction}>
-            <Typography variant="h6">
-              Step {item.number}
-            </Typography>
-            <Typography variant="body2">
-              {item.step}
-            </Typography>
-          </Paper>
-        ))} */}
       </Grid>
     </Container>
   )

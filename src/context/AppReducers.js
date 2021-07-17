@@ -8,7 +8,7 @@ export default (state, action) => {
     case "ADD_RECIPE_TO_EATEN_LIST":
       return {
         ...state,
-        eatenList: [action.paylod, ...state.eatenList]
+        eatenList: [action.payload, ...state.eatenList]
       }
     default:
       return state;
