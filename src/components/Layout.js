@@ -1,10 +1,12 @@
 import React from 'react'
-import { Toolbar, AppBar, Button, Grid, Container, Typography, makeStyles } from '@material-ui/core'
+import { Toolbar, AppBar, Button, Grid, Container, Typography, IconButton } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom'
 import FastfoodIcon from '@material-ui/icons/Fastfood';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import DoneAllIcon from '@material-ui/icons/DoneAll';
+import WbSunnyIcon from '@material-ui/icons/WbSunny';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -18,6 +20,7 @@ const useStyles = makeStyles((theme) => {
     }
   }
 })
+
 const Layout = ({ children }) => {
   const history = useHistory()
   const classes = useStyles()
@@ -51,7 +54,10 @@ const Layout = ({ children }) => {
                     <Typography variant="h6" onClick={ () => history.push("/eaten")}>
                       Eaten Recipes
                     </Typography>
-                  </Button>
+                </Button>
+                <IconButton color="default">
+                  <WbSunnyIcon />
+                </IconButton>
                 </Grid>
               </Grid>
             </Container>
